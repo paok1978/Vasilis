@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>Προβλέψεις Στοιχήματος</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; padding: 1rem; background: #f4f4f4; }
+    h1 { color: #1e90ff; }
+    .match { background: white; margin: 0.5rem 0; padding: 0.75rem; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    .match span { display: inline-block; margin-right: 1rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Προβλέψεις Στοιχήματος (TOP 10)</h1>
+  <div id="matches"></div>
+
+  <script>
+    const matches = [
+      "Real Madrid - Barcelona",
+      "Inter - Juventus",
+      "Bayern Munich - Dortmund",
+      "Manchester United - Chelsea",
+      "Paris SG - Lyon",
+      "Atletico Madrid - Sevilla",
+      "Liverpool - Arsenal",
+      "AC Milan - Napoli",
+      "Tottenham - Everton",
+      "Ajax - PSV"
+    ];
+
+    const outcomes = ['1', 'X', '2'];
+    const gg_ng = ['GG', 'NG'];
+
+    function getRandomItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    const container = document.getElementById('matches');
+
+    matches.forEach((match, i) => {
+      const outcome = getRandomItem(outcomes);
+      const goal = getRandomItem(gg_ng);
+
+      const div = document.createElement('div');
+      div.className = 'match';
+      div.innerHTML = `<span>${i + 1}. ${match}</span> | ${outcome} | ${goal}`;
+      container.appendChild(div);
+    });
+  </script>
+</body>
+</html>
