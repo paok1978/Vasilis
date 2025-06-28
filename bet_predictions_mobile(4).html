@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>Προβλέψεις Στοιχήματος (Ευρώπη)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; padding: 1rem; background: #f4f4f4; }
+    h1 { color: #1e90ff; }
+    button { padding: 0.5rem 1rem; margin-bottom: 1rem; border-radius: 6px; border: none; background-color: #1e90ff; color: white; font-weight: bold; cursor: pointer; }
+    .match { background: white; margin: 0.5rem 0; padding: 0.75rem; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    .match span { display: inline-block; margin-right: 1rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Προβλέψεις Στοιχήματος - Ευρωπαϊκά Ματς</h1>
+  <button onclick="generatePredictions()">🔄 Ανανέωση Προβλέψεων</button>
+  <div id="matches"></div>
+
+  <script>
+    const matches = [
+      "Real Madrid - Barcelona", "Atletico Madrid - Valencia",
+      "Manchester City - Arsenal", "Liverpool - Tottenham",
+      "Chelsea - Manchester United", "Everton - Aston Villa",
+      "Bayern Munich - Dortmund", "Leipzig - Leverkusen",
+      "PSG - Marseille", "Lyon - Monaco",
+      "Inter - AC Milan", "Juventus - Napoli",
+      "Roma - Lazio", "Fiorentina - Atalanta",
+      "AEK - Olympiacos", "PAOK - Panathinaikos",
+      "Fenerbahce - Galatasaray", "Ajax - PSV",
+      "Celtic - Rangers", "Porto - Benfica"
+    ];
+
+    const outcomes = ['1', 'X', '2'];
+    const gg_ng = ['GG', 'NG'];
+
+    function getRandomItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function generatePredictions() {
+      const container = document.getElementById('matches');
+      container.innerHTML = "";
+      matches.forEach((match, i) => {
+        const outcome = getRandomItem(outcomes);
+        const goal = getRandomItem(gg_ng);
+        const div = document.createElement('div');
+        div.className = 'match';
+        div.innerHTML = `<span>${i + 1}. ${match}</span> | ${outcome} | ${goal}`;
+        container.appendChild(div);
+      });
+    }
+
+    // Εκκίνηση με την πρώτη φόρτωση
+    generatePredictions();
+  </script>
+</body>
+</html>
